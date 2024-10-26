@@ -35,56 +35,6 @@
 
 //task 2
 
-//#include <iostream>
-//#include <fstream>
-//#include <string>
-//#include <Windows.h>
-//using namespace std;
-//
-//int main()
-//{
-//    SetConsoleCP(1251);
-//    SetConsoleOutputCP(1251);
-//    cout << "Робота з файлами" << endl;
-//    ifstream file1("text.txt");
-//    ofstream file2("text2.txt");
-//    if (!file1 || !file2) {
-//        cout << "Помилка відкриття файлів" << endl;
-//        return 1;
-//    }
-//    int charCount = 0, lineCount = 0, vowelCount = 0, consonantCount = 0, digitCount = 0;
-//    string line;
-//    while (getline(file1, line)) {
-//        lineCount++;  
-//        for (char c : line) {
-//            if (isalnum(c)) {  
-//                charCount++;  
-//                if (isdigit(c)) {
-//                    digitCount++;  
-//                }
-//                else {
-//                    char lower = tolower(c);
-//                    if (lower == 'a' || lower == 'e' || lower == 'i' || lower == 'o' || lower == 'u') {
-//                        vowelCount++; 
-//                    }
-//                    else {
-//                        consonantCount++;
-//                    }
-//                }
-//            }
-//        }
-//    }
-//    file2 << "Number of characters " << charCount << endl;
-//    file2 << "Number of lines : " << lineCount << endl;
-//    file2 << "Number of vowel letters : " << vowelCount << endl;
-//    file2 << "Number of consonant letters : " << consonantCount << endl;
-//    file2 << "Number of digits : " << digitCount << endl;
-//
-//    cout << "Готово" << endl;
-//
-//    return 0;
-//}
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -92,13 +42,33 @@
 using namespace std;
 
 int main() {
-	SetConsoleCP(1251);
+    SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     cout << "Робота з файлами" << endl;
     ifstream file1("text.txt");
     ofstream file2("text2.txt");
+
     if (!file1 || !file2) {
         cout << "Помилка відкриття файлів" << endl;
         return 1;
     }
+    int ccount = 0, lcount = 0, vcount = 0, concount = 0, dcount = 0;
+    string line;
+    while (getline(file1, line)) {
+        lcount++;
+        for (char c : line) {
+            if (isalnum(c)) {
+                ccount++;
+                c = tolower(c);
+                isdigit(c) ? dcount++ : (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') ? vcount++ : concount++;
+            }
+        }
+    }
+    file2 << "Number of characters: " << ccount << endl;
+    file2 << "Number of lines: " << lcount << endl;
+    file2 << "Number of vowel letters: " << vcount << endl;
+    file2 << "Number of consonant letters: " << concount << endl;
+    file2 << "Number of digits: " << dcount << endl;
+    cout << "Готово" << endl;
+    return 0;
 }
