@@ -79,26 +79,55 @@
 
 //task 3   
 
+//#include <iostream>
+//#include <fstream>
+//#include <string>
+//using namespace std;
+//int main() {
+//    ifstream file1("text.txt");
+//    ofstream file2("text2.txt");
+//
+//    if (!file1 || !file2) {
+//        cout << "Помилка відкриття файлів" << endl;
+//        return 1;
+//    }
+//
+//    string line, lastline;
+//
+//    while (getline(file1, line)) {
+//        file2 << lastline << endl;
+//        lastline = line;
+//    }
+//
+//    file1.close();
+//    file2.close();
+//}
+
+
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
-int main() {
-    ifstream file1("text.txt");
-    ofstream file2("text2.txt");
 
-    if (!file1 || !file2) {
-        cout << "Помилка відкриття файлів" << endl;
+int main() {
+    ifstream file("text.txt");
+    ofstream file2("text2.txt");
+    if (!file) {
+        cout << "Помилка відкриття файлу" << endl;
         return 1;
     }
 
-    string line, lastline;
+    string line;
+    int maxline = 0;
 
-    while (getline(file1, line)) {
-        file2 << lastline << endl;
-        lastline = line;
+    while (getline(file, line)) {
+        if (line.length() > maxline) {
+            maxline = line.length();
+        }
     }
 
-    file1.close();
+    file2 << "Max size line: " << maxline << endl;
+    
+    file.close();
     file2.close();
 }
