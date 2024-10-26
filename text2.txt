@@ -1,5 +1,3 @@
-Number of characters: 20
-Number of lines: 3
-Number of vowel letters: 4
-Number of consonant letters: 5
-Number of digits: 11
+
+HELLO
+SAME
